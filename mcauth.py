@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import argparse, urllib2
+debug = False
 
 parser = argparse.ArgumentParser(description='Returns a session id from Minecraft auth server')
 parser.add_argument('username', metavar='username',
@@ -14,4 +15,7 @@ if debug:
 
 response = urllib2.urlopen('http://login.minecraft.net/?user='+args.username + '&password=' + args.password + '&version=12')
 html = response.read()
+if debug:
+    print html
+
 print 'Session id: ' + html.split(':')[-1]
